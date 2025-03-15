@@ -1,0 +1,45 @@
+{
+  "Kinematics": [
+    {
+      "name": "Final Velocity",
+      "formula": "v_f = v_i + at",
+      "variables": {
+        "v_f": "Final Velocity",
+        "v_i": "Initial Velocity",
+        "a": "Acceleration",
+        "t": "Time"
+      },
+      "tags": ["velocity", "acceleration"],
+      "difficulty": 0,
+      "description": "This equation helps you find the final velocity of an object when you know its initial velocity, acceleration, and the time it has been moving."
+    },
+    {
+      "name": "Displacement",
+      "formula": "\\Delta x=v_{i}t+\\frac{1}{2}at^2",
+      "variables": {
+        "\\Delta x": "Displacement",
+        "v_i": "Initial Velocity",
+        "a": "Acceleration",
+        "t": "Time"
+      },
+      "tags": ["displacement", "motion"],
+      "difficulty": 2,
+      "description": "You can use this to calculate how far an object has traveled, taking into account its starting velocity and the acceleration over time."
+    }
+  ],
+  "Dynamics": [
+    {
+      "name": "Newton's 2nd Law",
+      "formula": "F_{net}=ma",
+      "variables": {
+        "F_{net}": "Net Force",
+        "m": "Mass",
+        "a": "Acceleration"
+      },
+      "tags": ["newton", "second"],
+      "difficulty": 1,
+      "description": "This shows that the net force acting on an object is the product of its mass and acceleration."
+    }
+  ]
+}
+
