@@ -21,7 +21,8 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -52,10 +53,16 @@ android {
 }
 
 dependencies {
+    configurations.all {
+        resolutionStrategy {
+            force("com.google.guava:guava:32.0.1-jre")
+        }
+    }
     implementation(libs.matheclipse.core) {
         exclude(group="org.apache.logging.log4j", module="log4j-core")
     }
-    implementation(libs.mathview)
+    implementation("in.hourglass.mathrender:katexmathview:1.0.3")
+    implementation("tech.units:indriya:2.2.2")
     implementation(libs.androidx.runtime.livedata)
     coreLibraryDesugaring(libs.desugar.jdk.libs)
     implementation(libs.androidx.core.ktx)

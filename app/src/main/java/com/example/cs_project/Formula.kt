@@ -14,5 +14,6 @@ data class Formula(
     val parsed: IExpr? = null,
     val parsedVariables: List<IExpr>? = null,
     val latexVariables: List<String>? = null,
-    val variableNames: List<String>? = null
+    val variableNames: List<String>? = null,
+    val latexFormula: String? = null
 )

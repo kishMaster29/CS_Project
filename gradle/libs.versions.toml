@@ -1,5 +1,5 @@
 [versions]
-agp = "8.8.1"
+agp = "8.9.0"
 desugar_jdk_libs = "2.1.5"
 firebaseBom = "33.9.0"
 kotlin = "2.0.0"
@@ -12,7 +12,6 @@ activityCompose = "1.10.0"
 composeBom = "2024.04.01"
 log4j2Android = "1.0.0"
 matheclipseCore = "3.0.0"
-mathview = "1.0.3"
 runtimeLivedata = "1.7.8"
 navigationCompose = "2.8.8"
 kotlinxSerializationJson = "1.6.0"
@@ -35,7 +34,6 @@ androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
 log4j2-android = { module = "com.celeral:log4j2-android", version.ref = "log4j2Android" }
 matheclipse-core = { module = "org.matheclipse:matheclipse-core", version.ref = "matheclipseCore" }
-mathview = { module = "in.hourglass.mathrender:katexmathview", version.ref = "mathview" }
 androidx-runtime-livedata = { group = "androidx.compose.runtime", name = "runtime-livedata", version.ref = "runtimeLivedata" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
 androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationCompose" }

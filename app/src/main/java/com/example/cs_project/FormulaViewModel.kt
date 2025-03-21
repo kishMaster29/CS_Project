@@ -1,18 +1,17 @@
+package com.example.cs_project
+
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.cs_project.Formula
-import com.example.cs_project.convertToLatex
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.serialization.json.Json
 import org.matheclipse.core.eval.ExprEvaluator
-import org.matheclipse.core.form.tex.TeXParser
 import org.matheclipse.core.interfaces.IExpr
-import org.matheclipse.core.form.tex.AbstractTeXConverter
+import kotlin.collections.iterator
 
 class FormulaViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -35,23 +34,29 @@ class FormulaViewModel(application: Application) : AndroidViewModel(application)
                     formulasMap.mapValues { (topic, formulas) ->
                         formulas.map { formula ->
                             try {
-                                val parsed = TeXParser.convert(formula.formula)
-                                Log.d("Symja", "Parsed formula: $parsed")
-
                                 val parsedVarList = mutableListOf<IExpr>()
                                 val varNameList = mutableListOf<String>()
+                                val latexVariables = mutableListOf<String>()
 
                                 for (entry in formula.variables) {
-                                    val parsedVariable = TeXParser.convert(entry.key)
+                                    val parsedVariable = evaluator.parse(fixString(entry.key))
+                                    val texVariable = convertToLatex(parsedVariable)
                                     parsedVarList.add(parsedVariable)
                                     varNameList.add(entry.value)
+                                    latexVariables.add(texVariable)
+                                    evaluator.eval("Symbol(\"${fixString(entry.key)}\")")
                                 }
+
+                                val parsed = evaluator.eval("Unevaluated(${fixString(formula.formula)})")
+                                val latexFormula = convertToLatex(parsed)
+                                Log.d("Symja", "Parsed formula: $parsed")
 
                                 formula.copy(
                                     parsed = parsed,
                                     parsedVariables = parsedVarList,
-                                    latexVariables = formula.variables.keys.toList(),
-                                    variableNames = varNameList
+                                    latexVariables = latexVariables,
+                                    variableNames = varNameList,
+                                    latexFormula = latexFormula
                                 )
                             } catch (e: Exception) {
                                 Log.e(

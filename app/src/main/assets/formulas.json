@@ -1,45 +1,202 @@
 {
   "Kinematics": [
     {
-      "name": "Final Velocity",
-      "formula": "v_f = v_i + at",
+      "name": "Displacement",
+      "formula": "Δx==v_{i}*t + 1/2*a*t^2",
       "variables": {
-        "v_f": "Final Velocity",
-        "v_i": "Initial Velocity",
+        "Δx": "Displacement",
+        "v_{i}": "Initial Velocity",
         "a": "Acceleration",
         "t": "Time"
       },
-      "tags": ["velocity", "acceleration"],
-      "difficulty": 0,
-      "description": "This equation helps you find the final velocity of an object when you know its initial velocity, acceleration, and the time it has been moving."
+      "tags": ["displacement", "acceleration"],
+      "difficulty": 1,
+      "description": "You can use this to calculate how far an object has traveled, taking into account its starting velocity and the acceleration over time."
     },
     {
-      "name": "Displacement",
-      "formula": "\\Delta x=v_{i}t+\\frac{1}{2}at^2",
+      "name": "Displacement Definition",
+      "formula": "Δx == x_{f} - x_{i}",
       "variables": {
-        "\\Delta x": "Displacement",
-        "v_i": "Initial Velocity",
-        "a": "Acceleration",
-        "t": "Time"
+        "Δx": "Displacement",
+        "x_{f}": "Final Position",
+        "x_{i}": "Initial Position"
       },
       "tags": ["displacement", "motion"],
+      "difficulty": 0,
+      "description": "This formula defines displacement as the difference between the final and initial positions of an object."
+    },
+    {
+      "name": "Average Velocity",
+      "formula": "v_{avg} == Δx / Δt",
+      "variables": {
+        "v_{avg}": "Average Velocity",
+        "Δx": "Displacement",
+        "Δt": "Time Interval"
+      },
+      "tags": ["velocity", "motion"],
+      "difficulty": 0,
+      "description": "This formula calculates the average velocity of an object, which is the total displacement divided by the total time interval."
+    },
+    {
+      "name": "Instantaneous Velocity (Limit Definition)",
+      "formula": "v == Limit(Δx / Δt, Δt -> 0)",
+      "variables": {
+        "v": "Instantaneous Velocity",
+        "Δx": "Displacement"
+      },
+      "tags": ["velocity", "motion", "calculus"],
       "difficulty": 2,
-      "description": "You can use this to calculate how far an object has traveled, taking into account its starting velocity and the acceleration over time."
+      "description": "Instantaneous velocity is defined as the limit of the average velocity as the time interval approaches zero."
+    },
+    {
+      "name": "Instantaneous Velocity (Derivative Definition)",
+      "formula": "v == D(x, t)",
+      "variables": {
+        "v": "Instantaneous Velocity",
+        "x": "Position"
+      },
+      "tags": ["velocity", "motion", "calculus"],
+      "difficulty": 2,
+      "description": "The instantaneous velocity of an object is the derivative of its position with respect to time."
+    },
+    {
+      "name": "Average Acceleration",
+      "formula": "a_{avg} == Δv / Δt",
+      "variables": {
+        "a_{avg}": "Average Acceleration",
+        "Δv": "Change in Velocity",
+        "Δt": "Time Interval"
+      },
+      "tags": ["acceleration", "motion"],
+      "difficulty": 0,
+      "description": "This formula calculates the average acceleration of an object, which is the change in velocity divided by the time interval."
+    },{
+      "name": "Final Velocity",
+      "formula": "v_{f} == v_{i} + a * Δt",
+      "variables": {
+        "v_{f}": "Final Velocity",
+        "v_{i}": "Initial Velocity",
+        "a": "Acceleration",
+        "Δt": "Time Interval"
+      },
+      "tags": ["velocity", "motion"],
+      "difficulty": 1,
+      "description": "This formula calculates the final velocity of an object given its initial velocity, acceleration, and time interval."
+    },
+    {
+      "name": "Final Velocity (Squared)",
+      "formula": "v_{f}^2 == v_{i}^2 + 2 * a * Δx",
+      "variables": {
+        "v_{f}": "Final Velocity",
+        "v_{i}": "Initial Velocity",
+        "a": "Acceleration",
+        "Δx": "Displacement"
+      },
+      "tags": ["velocity", "motion"],
+      "difficulty": 1,
+      "description": "This equation relates the squares of initial and final velocity with acceleration and displacement."
+    },
+    {
+      "name": "Displacement (Using Average Velocity)",
+      "formula": "Δx == (v_{i} + v_{f}) / 2 * Δt",
+      "variables": {
+        "Δx": "Displacement",
+        "v_{i}": "Initial Velocity",
+        "v_{f}": "Final Velocity",
+        "Δt": "Time Interval"
+      },
+      "tags": ["displacement", "motion"],
+      "difficulty": 1,
+      "description": "This formula calculates displacement using the average of initial and final velocity over a time interval."
+    },
+    {
+      "name": "Velocity as a Function of Time",
+      "formula": "v(t) == v_{0} + Integrate(a(t), {t, 0, t})",
+      "variables": {
+        "v(t)": "Velocity as a function of time",
+        "v_{0}": "Initial Velocity",
+        "a(t)": "Acceleration as a function of time"
+      },
+      "tags": ["velocity", "motion", "calculus"],
+      "difficulty": 2,
+      "description": "This formula calculates velocity as a function of time by integrating acceleration from the initial time to the current time."
+    },
+    {
+      "name": "Position as a Function of Time",
+      "formula": "x(t) == x_{0} + Integrate(v(t), {t, 0, t})",
+      "variables": {
+        "x(t)": "Position as a function of time",
+        "x_{0}": "Initial Position",
+        "v(t)": "Velocity as a function of time"
+      },
+      "tags": ["position", "motion", "calculus"],
+      "difficulty": 2,
+      "description": "This formula calculates position as a function of time by integrating velocity from the initial time to the current time."
+    },
+    {
+      "name": "Relative Velocity",
+      "formula": "v_{BA} == v_{B} - v_{A}",
+      "variables": {
+        "v_{BA}": "Velocity of B relative to A",
+        "v_{B}": "Velocity of B",
+        "v_{A}": "Velocity of A"
+      },
+      "tags": ["velocity", "relative motion"],
+      "difficulty": 1,
+      "description": "This formula calculates the velocity of object B relative to object A by subtracting their velocity vectors."
+    },
+    {
+      "name": "Relative Velocity Addition",
+      "formula": "v_{AB} + v_{BC} == v_{AC}",
+      "variables": {
+        "v_{AB}": "Velocity of A relative to B",
+        "v_{BC}": "Velocity of B relative to C",
+        "v_{AC}": "Velocity of A relative to C"
+      },
+      "tags": ["velocity", "relative motion"],
+      "difficulty": 1,
+      "description": "This formula expresses the relationship between the velocities of three objects in relative motion."
+    },
+    {
+      "name": "Apparent Weight",
+      "formula": "W_{Apparent} == m * (g + a)",
+      "variables": {
+        "W_{Apparent}": "Apparent Weight",
+        "m": "Mass",
+        "g": "Gravitational Acceleration",
+        "a": "Acceleration"
+      },
+      "tags": ["weight", "dynamics"],
+      "difficulty": 0,
+      "description": "This formula calculates the apparent weight of an object, which is the weight experienced by an object when it is accelerating, in addition to the gravitational pull."
     }
   ],
   "Dynamics": [
     {
-      "name": "Newton's 2nd Law",
-      "formula": "F_{net}=ma",
+      "name": "Newton's Second Law",
+      "formula": "F_{net} == m * a",
       "variables": {
         "F_{net}": "Net Force",
         "m": "Mass",
         "a": "Acceleration"
       },
-      "tags": ["newton", "second"],
-      "difficulty": 1,
-      "description": "This shows that the net force acting on an object is the product of its mass and acceleration."
+      "tags": ["force", "Newton's laws", "motion"],
+      "difficulty": 0,
+      "description": "Newton's Second Law states that the net force acting on an object is equal to its mass times its acceleration."
+    },
+    {
+      "name": "Newton's Second Law (Differential Form)",
+      "formula": "F_{net} == m * D(v, t)",
+      "variables": {
+        "F_{net}": "Net Force",
+        "m": "Mass",
+        "v": "Velocity"
+      },
+      "tags": ["force", "Newton's laws", "calculus", "motion"],
+      "difficulty": 2,
+      "description": "In differential form, Newton's Second Law states that the net force is equal to mass times the time derivative of velocity."
     }
+
   ]
 }
 

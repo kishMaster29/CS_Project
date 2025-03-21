@@ -35,36 +35,30 @@ suspend fun solveForExpr(equation: IExpr, solveFor: IExpr):List<IExpr> = withCon
     solutions
 }
 
-suspend fun convertToLatex(solutions: List<IExpr>, replaceBrackets: Boolean = true): List<String> =
+fun fixString(input: String): String {
+    var result = input.replace("Δ", "€")
+    val regex = """([a-zA-Z0-9_]+)_\{([a-zA-Z0-9_]+)\}""".toRegex()
+    result = regex.replace(result) { matchResult ->
+        val part1 = matchResult.groupValues[1]
+        val part2 = matchResult.groupValues[2]
+        "Subscript($part1, $part2)"
+    }
+    return result
+}
+
+suspend fun convertToLatex(expression: IExpr): String =
     withContext(Dispatchers.Default) {
-        val latexList = mutableListOf<String>()
+        val texCommand = "TeXForm(HoldForm($expression))"
+        val latexString: String = evaluator.eval(texCommand).toString()
 
-        for (solution in solutions) {
-            val texCommand = "TeXForm($solution)"
-            val latexExpr: IExpr = evaluator.eval(texCommand)
-            val latexString = latexExpr.toString()
-
-            val transformedLatex = latexString
-                .replace("\\to", "=")
-                .replace("==", "=")
-                .replace(Regex("\\\\text\\{vec\\}\\((.*?)\\)")) { matchResult ->
-                    "\\vec{${matchResult.groupValues[1]}}"
-                }
-                .replace(Regex("""(\\vec\{[^}]*\}\s*\\cdot\s*\\vec\{[^}]*\})|\\cdot""")) { match ->
-                    match.groupValues[1].ifEmpty { " " }
-                }
-
-            val finalLatex = if (replaceBrackets) {
-                transformedLatex
-                    .replace("\\{", "")
-                    .replace("\\}", "")
-            } else {
-                transformedLatex
+        latexString
+            .replace("€", "Δ")
+            .replace("==", "=")
+            .replace(Regex("\\\\text\\{vec\\}\\((.*?)\\)")) { matchResult ->
+                "\\vec{${matchResult.groupValues[1]}}"
+            }
+            .replace(Regex("""(\\vec\{[^}]*\}\s*\\cdot\s*\\vec\{[^}]*\})|\\cdot""")) { match ->
+                match.groupValues[1].ifEmpty { " " }
             }
 
-            latexList.add(finalLatex)
-        }
-
-        Log.d("Latex Parser", latexList.toString())
-        latexList
     }
